@@ -1,0 +1,16 @@
+ 
+<?xml version="1.0"?>
+<data>
+  <location>
+    <room_id>%ROOM_ID</room_id>
+    <sensor_id>%SENSOR_ID</sensor_id>
+  </location>
+  <measured_data>
+    <parameter_id>%PARAMETER_ID</parameter_id>
+    <parameter_value>%PARAMETER_VALUE</parameter_value>
+    <md5_value>%MD5_VALUE</md5_value>
+    <voltage>%VOLTAGE</voltage>
+    <signal_strenght>%SIGNAL_STRENGHT</signal_strenght>
+    <measure_timestamp>%MEASURE_TIMESTAMP</measure_timestamp>
+  </measured_data>
+</data>

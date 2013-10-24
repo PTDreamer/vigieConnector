@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/vigie">
+        <file>vigie_template.txt</file>
+    </qresource>
+</RCC>
