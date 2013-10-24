@@ -26,7 +26,13 @@ int main(int argc, char *argv[])
             }
         }
     }
-    qDebug()<<param<<debug<<settings;
-    new Server(debug,settings);
-    return app.exec();
+    bool init;
+    Server *server = new Server(debug,settings, init);
+    if(init)
+        return app.exec();
+    else
+    {
+        delete server;
+        return -1;
+    }
 }

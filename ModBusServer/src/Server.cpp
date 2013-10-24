@@ -4,8 +4,9 @@
 #include <QDomDocument>
 #define POPULATE_SETTINGS FALSE
 #define OLD_RECORDS_DELETE_TIMING 3600000
-Server::Server(int debug, QString settings):debug(debug)
+Server::Server(int debug, QString settings, bool &result):debug(debug)
 {
+    result = false;
     QDomDocument doc("virtual_modbus");
     if(settings.isEmpty())
         settings=qApp->applicationDirPath()+QDir::separator()+"settings.xml";
@@ -17,7 +18,8 @@ Server::Server(int debug, QString settings):debug(debug)
 
     if (!file.open(QIODevice::ReadOnly))
     {
-        if(debug>0) qDebug()<<"ERROR could not open settings file";
+        qDebug()<<"ERROR could not open settings file";
+        qDebug()<<"Please define settings file using the CLI -settings= option or place a settings.xml file on the same directory as this binary";
         return;
     }
 
@@ -26,7 +28,7 @@ Server::Server(int debug, QString settings):debug(debug)
     int col;
     if(!doc.setContent(&file,&error,&line,&col))
     {
-        if(debug>0) qDebug()<<"ERROR could not parse settings file:"<<error<<line<<col;
+        qDebug()<<"ERROR could not parse settings file:"<<error<<line<<col;
     }
 
 
@@ -64,6 +66,7 @@ Server::Server(int debug, QString settings):debug(debug)
     {
         if(debug>0) qDebug() << "The server started on port:" + QString::number(server->serverPort());
         connect(server, SIGNAL(newConnection()), this, SLOT(newConection()));
+        result = true;
     }
     else if(debug>0) qDebug() << "The server was unable to start. Reason:" + server->errorString();
 }

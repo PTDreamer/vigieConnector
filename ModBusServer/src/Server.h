@@ -23,7 +23,7 @@ class Server : QObject
     Q_OBJECT
 
 public:
-    Server(int debug,QString settings);
+    Server(int debug, QString settings, bool &result);
 
 private slots:
     void newConection();
