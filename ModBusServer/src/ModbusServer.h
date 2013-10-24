@@ -47,11 +47,6 @@ QMutex readWriteMutex;
 QWaitCondition threadSleep;
 
 QMap<int,vigie> modbusVigieMap;
-/*-----------------Memory----------------*/
-QVector < QVector <bool> > m_coils;
-QVector < QVector <bool> > m_discrete_inputs;
-QVector < QVector <short> > m_hold_registers;
-QVector < QVector <short> > m_input_registers;
 QVector <energy *> energycheck;
 QList <vigie> vigieList;
 QString vigieTemplate;

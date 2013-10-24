@@ -23,10 +23,6 @@
 ModbusServer::ModbusServer(int numberOfUnit, QString vigieServerIP, quint16 vigieServerPort, int debug, QMap<int, vigie> &modbusVigieMap):vigieServerAdress(vigieServerIP),vigieServerPort(vigieServerPort),debug(debug),threadRun(true),modbusVigieMap(modbusVigieMap)
 {
     this->numberOfUnits = numberOfUnit;
-    m_coils.fill(QVector <bool> (65536,false),numberOfUnit);
-    m_discrete_inputs.fill(QVector <bool> (65536,false),numberOfUnit);
-    m_hold_registers.fill(QVector <short> (65536,0),numberOfUnit);
-    m_input_registers.fill(QVector <short> (65536,0),numberOfUnit);
     energy * en;
     for(int x=0;x<MAX_ENERGY_METERS;++x)
     {
@@ -72,7 +68,6 @@ ModbusFrame ModbusServer::giveRequest(ModbusFrame &requestFrame)
             for (int i = 0 ; i < vVar.size() ; i++)
             {
                 int adjustedReference = referenceNumber + i;
-                m_hold_registers[unitId-1][adjustedReference] = vVar[i].toUInt();
                 {
                     if(debug > 1) qDebug()<<"Received modbus WriteMultipleRegisters frame adress "<<referenceNumber+i;
                     if(adjustedReference<99)
