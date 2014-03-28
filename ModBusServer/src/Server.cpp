@@ -3,7 +3,7 @@
 #include <QDateTime>
 #include <QDomDocument>
 #define POPULATE_SETTINGS FALSE
-#define OLD_RECORDS_DELETE_TIMING 3600000
+
 Server::Server(int debug, QString settings, bool &result):debug(debug)
 {
     result = false;
@@ -30,7 +30,6 @@ Server::Server(int debug, QString settings, bool &result):debug(debug)
     {
         qDebug()<<"ERROR could not parse settings file:"<<error<<line<<col;
     }
-
 
     if(debug>0) qDebug()<<"Adding new devices from settings file";
 

@@ -168,7 +168,7 @@ void ModbusServer::run()
     QTcpSocket * socket = new QTcpSocket();
     while(threadRun)
     {
-        if(vigieList.length()==0)
+        if(vigieList.length() == 0)
         {
             threadSleepMutex.lock();
             threadSleep.wait(&threadSleepMutex,1000);
